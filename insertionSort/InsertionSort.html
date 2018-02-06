@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <title>Insertion Sort Algorithm</title>
+    </head>
+    <body>
+        <input type="text" placeholder="enter comma separated numbers" id='input1'>
+        <button id="run" onclick="getUserInput()" style="background:green">Run</button>
+        <div id="output" style="color:blue">    </div>
+        <script>
+		var iteration=0;
+        function getUserInput(){
+            var data=document.getElementById('input1').value.split(',').map(Number);
+
+          /*  var data=document.getElementById('input1').value.split('').map(function(num){
+                    return num.charCodeAt();
+            });*/
+
+            var res=insertionSort(data);
+            /*res=res.map(function(char){
+                return String.fromCharCode(char);
+
+            })*/
+            document.getElementById('output').innerText=res;
+        }
+/*Code Insertion sort: Code is similar to the card and image above. It starts with the second element. Pick the second element to be inserted and then compare to the previous element. If the first one is bigger, move the first one to second position and second one at first.
+
+Now first and second item is sorted.
+
+Then, pick the third element and check whether the second element is bigger than the third. keep going similar way until you hit the first element or a element smaller than the element you are comparing with. When you get an item smaller than the picked item, you insert it..*/
+        function insertionSort(arr){
+          var pick;
+		  for(var i=1;i<arr.length;i++){
+			pick=arr[i];
+			j=i;
+			while(arr[j-1]>pick && j>0){
+			arr[j]=arr[j-1];
+			j--;
+			}
+			arr[j]=pick;
+		  }
+
+		console.log('Iterations'+iteration);
+            return arr;
+        }
+        </script>
+    </body>
+</html>

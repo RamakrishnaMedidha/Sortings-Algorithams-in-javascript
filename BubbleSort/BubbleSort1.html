@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Bubble Sort Algorithm</title>
+    </head>
+    <body>
+        <input type="text" placeholder="enter comma separated values" id='input1'>
+        <button id="run" onclick="getUserInput()" style="background:green">Run</button>
+        <div id="output" style="color:blue">    </div>
+        <script>
+		var iteration=0;
+        function getUserInput(){
+            //var data=document.getElementById('input1').value.split(',').map(Number);
+            var data=document.getElementById('input1').value.split(',').map(function(num){
+                    return isNaN(num) ? '!@#$': parseInt(num);
+            });
+            if(data.indexOf('!@#$')!==-1){
+                alert("Please enter only numbers");
+                return;
+            }
+            var res=bubbleSort(data);
+            document.getElementById('output').innerText=res;
+        }
+//This is worst case it has to rotate loop n*2 times for every array
+        function bubbleSort(arr){
+            for(var i=0;i<arr.length;i++){
+                for(var j=0;j<arr.length-1;j++){
+				iteration++;
+                    if(arr[j]>arr[j+1]){
+                        arr[j]=arr[j]+arr[j+1];
+                        arr[j+1]=arr[j]-arr[j+1];
+                        arr[j]=arr[j]-arr[j+1];
+                    }
+                }
+            }
+			console.log('Iterations'+iteration);
+            return arr;
+        }
+        </script>
+    </body>
+</html>

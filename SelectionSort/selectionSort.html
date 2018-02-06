@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Selection Sort Algorithm</title>
+    </head>
+    <body>
+        <input type="text" placeholder="enter String" id='input1'>
+        <button id="run" onclick="getUserInput()" style="background:green">Run</button>
+        <div id="output" style="color:blue">    </div>
+        <script>
+		var iteration=0;
+        function getUserInput(){
+            var data=document.getElementById('input1').value.split(',').map(Number);
+
+          /*  var data=document.getElementById('input1').value.split('').map(function(num){
+                    return num.charCodeAt();
+            });*/
+
+            var res=selectionSort(data);
+            /*res=res.map(function(char){
+                return String.fromCharCode(char);
+
+            })*/
+            document.getElementById('output').innerText=res;
+        }
+/*Go through the array, find the index of the lowest element swap the lowest element with the first element.
+ Hence first element is the lowest element in the array.*/
+        function selectionSort(arr){
+            var indx;//it is minimum index
+            var len=arr.length;
+            for(var i=0;i<len;i++){
+                indx=i;
+                for(var j=i+1;j<len;j++){
+                    //just for counting no of iterations
+                    iteration++;
+                    if(arr[indx]>arr[j]){
+                        indx=j;
+                    }
+                }
+                if(indx!==i){
+                arr[indx]=arr[indx]+arr[i]
+                arr[i]=arr[indx]-arr[i];
+                arr[indx]=arr[indx]-arr[i];
+            }
+            }
+
+
+		console.log('Iterations'+iteration);
+            return arr;
+        }
+        </script>
+    </body>
+</html>

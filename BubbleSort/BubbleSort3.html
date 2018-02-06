@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Bubble Sort Algorithm</title>
+    </head>
+    <body>
+        <input type="text" placeholder="enter comma separated values" id='input1'>
+        <button id="run" onclick="getUserInput()" style="background:green">Run</button>
+        <div id="output" style="color:blue">    </div>
+        <script>
+		var iteration=0;
+        function getUserInput(){
+            //var data=document.getElementById('input1').value.split(',').map(Number);
+            var data=document.getElementById('input1').value.split(',').map(function(num){
+                    return isNaN(num) ? '!@#$': parseInt(num);
+            });
+            if(data.indexOf('!@#$')!==-1){
+                alert("Please enter only numbers");
+                return;
+            }
+            var res=bubbleSort(data);
+            document.getElementById('output').innerText=res;
+        }
+//This better compared to previous solution because in the best case it will interate loop n times and in worst case it will iterate n*2 times
+//isSorted is a flat to stop the loop if the array is in sorted order
+        function bubbleSort(arr){
+            var isSorted=false;
+            var len=arr.length;
+            var count;
+            while(!isSorted){
+                var count=0;
+                for(var j=0;j<len-1;j++){
+				iteration++;
+                    if(arr[j]>arr[j+1]){
+                        arr[j]=arr[j]+arr[j+1];
+                        arr[j+1]=arr[j]-arr[j+1];
+                        arr[j]=arr[j]-arr[j+1];
+                        count++;
+                    }
+                
+            }
+            if(count===0){
+                isSorted=true;
+            }
+        } len--;
+		console.log('Iterations'+iteration);
+            return arr;
+        }
+        </script>
+    </body>
+</html>

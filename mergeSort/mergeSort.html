@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>merge Sort  Algorithm</title>
+    </head>
+    <body>
+        <input type="text" placeholder="enter String" id='input1'>
+        <button id="run" onclick="getUserInput()" style="background:green">Run</button>
+        <div id="output" style="color:blue">    </div>
+        <script>
+		var iteration=0;
+        function getUserInput(){
+            var data=document.getElementById('input1').value.split(',').map(Number);
+            var res=mergeSort(data);
+            document.getElementById('output').innerText=res;
+        }
+       function mergeSort(arr){
+	   if(arr.length<2){
+	   return arr;
+	   }
+	   var mid=Math.floor(arr.length/2);
+	   var left=arr.slice(0,mid);
+	   var right=arr.slice(mid);
+	   return merge(mergeSort(left),mergeSort(right));
+	   }
+	   function merge(leftArr,rightArr){	
+	   var leftLen=leftArr.length;
+	   var rightLen=rightArr.length;
+	   var l=0,r=0,result=[];
+	   while(l<leftLen && r<rightLen){
+	   if(leftArr[l]>rightArr[r]){
+	   result.push(rightArr[r]);
+	   r++;
+	   }else{
+	   result.push(leftArr[l]);
+	   l++
+	   }
+	   }
+	   return result.concat(leftArr.slice(l)).concat(rightArr.slice(r));
+	   }
+        </script>
+    </body>
+</html>
