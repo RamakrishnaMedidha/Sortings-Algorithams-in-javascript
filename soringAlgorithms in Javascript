@@ -1,0 +1,151 @@
+ //function to swap the two elements in the array 
+function swap(arr,firstIndex,secondIndex){
+	var temp=arr[firstIndex];
+	arr[firstIndex]=arr[secondIndex];
+	arr[secondIndex]=temp;
+}
+
+
+//bubble sort
+/*
+compare side by side elements and swap if the jth index value is greater than j+1 th index 
+*/
+function bubbleSort(arr){
+	var length=arr.length;
+	for(var i=0;i<length;i++){
+		for(var j=0;j<length-1;j++){
+			if(arr[j]>arr[j+1]){
+				swap(arr,j,j+1);
+			}
+		}
+	
+	}
+	return arr;
+}
+
+
+/*
+minmum value index determined by comaporing the elements (i with j=i+1 to n )
+*/
+//selection sort
+function selectionSort(arr){
+	var length=arr.length;
+	var minIndex;
+	for(var i=0;i<length;i++){
+		minIndex=i;
+		for(var j=i+1;j<length;j++){
+			if(arr[minIndex]>arr[j]){
+				minIndex=j;		
+			}
+		}
+		if(minIndex!=i){
+			swap(arr,minIndex,i);
+		}
+	}
+	return arr;
+}
+
+ //insertion Sort
+ /*
+  
+  pick an element and check with the already sorted values before the current index.if any greater value found then swao those elements
+ 
+ */
+ function insertionSort(arr){
+	var length=arr.length;
+	var picked;
+	var j;
+	for(var i=1;i<length;i++){
+		picked=arr[i];
+		j=i;
+		while(arr[j-1]>picked && j>0){
+			arr[j]=arr[j-1];
+			j--;
+		}
+		arr[j]=picked;
+	}
+	return arr;
+ 
+ }
+ //quick sort
+ /*
+ select pivot element and compare remaining elements with the pivot 
+ i)if value is greater than pivot push to right Array
+ ii) else to leftArray
+ these process will happen recursively.
+ */
+ function quickSort(arr){
+	var length=arr.length;
+	var pivot;
+	var leftArr=[];
+	var rightArr=[];
+	var newArr=[];
+	if(length<2){
+		return arr;
+	}
+	pivot=arr[length-1];
+	for(var i=0;i<length-1;i++){
+		if(pivot>=arr[i]){
+			leftArr.push(arr[i]);
+		}else{
+			rightArr.push(arr[i]);
+		}
+	}
+	newArr=newArr.concat(quickSort(leftArr),pivot,quickSort(rightArr));
+	return newArr;
+ }
+ 
+ /*
+ mergeSort will devide the array into two parts and merge will sort them,these process will happen recursively
+ */
+ //merge sort
+ function mergeSort(arr){
+	var length=arr.length;
+	if(length<2){
+		return arr;
+	}
+	var mid=Math.floor(length/2);
+	var leftArr=arr.slice(0,mid);
+	var rightArr=arr.slice(mid);
+	return merge(mergeSort(leftArr),mergeSort(rightArr));
+ }
+ 
+ function merge(leftArr,rightArr){
+	var leftArrLen=leftArr.length;
+	var rightArrLen=rightArr.length;
+	var l=0;
+	var r=0;
+	var resultArr=[];
+	while(l<leftArrLen && r<rightArrLen){
+			if(leftArr[l]<rightArr[r]){
+				resultArr.push(leftArr[l]);
+				l++;
+			}else{
+				resultArr.push(rightArr[r]);
+				r++;
+			}
+	}
+	return resultArr.concat(leftArr.slice(l),rightArr.slice(r));
+ }
+ 
+
+
+/*Binary Search using sorted arry*/
+function binarySearch(sortedArr,target){
+	var length=sortedArr.length;
+	var low=0;
+	var high=length-1;
+	var mid;
+	while(low<=high){
+	mid=Math.floor((low+high)/2);
+	if(sortedArr[mid]==target){
+		return mid;
+	}else if(target>sortedArr[mid]){
+		low=mid+1;	
+	}else{
+		high=mid-1;
+	}
+	}
+	return -1;
+}
+
