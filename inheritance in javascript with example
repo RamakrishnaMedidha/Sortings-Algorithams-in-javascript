@@ -1,0 +1,34 @@
+//prototype inheritance in javascript
+
+/*person constructor function is common for all the users so we can inherit properties and methods of it*/
+function person(firstName,lastName,age){
+	this.name={
+	firstName,lastName
+	};
+	this.age=age;
+	this.hello=function(){
+		alert('Hello Iam person Own method');		
+	}
+	}
+	//adding method on the person prototype
+	person.prototype.greeting=function(){
+		alert("hello "+this.name);
+	}
+	
+	
+/*person condstructor function called with the parameters by setting the this context to teacher
+so here only properties and methods which are there in the constructor function will be inherited to the teacher ,but
+properties or methods which are there on person.prototype will not be inherited to do so 
+teacher.prototype has to set with the person prototype
+after the above statement the teacher.prototype.constructor will point to the person ,so it has to changed to teacher
+*/
+function teacher(firstName,lastName,age,subject){
+person.call(this,firstName,lastName,age);
+this.subject=subject;
+}	
+
+teacher.prototype=Object.create(person.prototype);
+teacher.prototype.constructor=teacher;
+
+/*new keyword must other wise this context will be "window" */
+var mathTeacher=new teacher('surender','reddy',34,'Mathematics');
