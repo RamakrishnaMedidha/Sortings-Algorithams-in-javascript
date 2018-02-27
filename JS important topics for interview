@@ -1,0 +1,19 @@
+/*
+event life cycle:
+The event flow model specified by DOM Level 2 Events has three phases to it:
+
+1.Event Capturing Phase
+2.At the target
+Event Bubbling Phase.
+First occurs Event Capturing, provided there exists an opportunity to intercept the event.
+
+Then the actual target gets the event
+
+Then it get to the final phase of bubbling, which allows a final response to the event.
+
+Referring to the previous example, clicking the <div> element fires the event in the order as specified by the diagram above.
+
+http://www.tutorialspark.com/javascript/JavaScript_Event_Flow.php
+https://javascript.info/bubbling-and-capturing
+
+*/
