@@ -1,0 +1,50 @@
+
+1)var arr=[1,[2,[3,4,[5,[6,[[[[7],[8]],[9]]],10]]]]]; to flat array=>[1,2,3,4,5,6,7,8,9,10]*
+
+
+function getsingleArray(arr,result=[]){
+	//if the element is not array then push it to result array else call the same function with current array and result array
+	for(var i=0;i<arr.length;i++){
+	if(Array.isArray(arr[i])){
+		getsingleArray(arr[i],result);
+	}else{
+		result.push(arr[i]);	
+	}
+}
+return result;
+
+}
+/*other way of writing*/
+function getsingleArray(arr){
+	return arr.reduce(function(acc,current){
+	return acc.concat(Array.isArray(current)?getsingleArray(current):current);
+	},[]);
+}
+
+2)inject some script and disable all the click events of a webpage using javascript
+
+//add event to the document,set 3rd parameter as true so the propagation will happen.in side the function stop propagation and prevent default behaviour
+documnet.addEventListener('click',handlerFun,true);
+function handlerFun(event){
+	event.stopPropagation();
+	event.preventDefault();
+}
+
+3)find the output
+var a={
+b:2,
+c:function(){
+	console.log(this.b);
+}
+}
+
+i)a.c()=?        				
+							
+Ans:in this scenario "this" will point out to current object i.e a =>a.b=2
+2				            			   
+
+ii)var d=a.c;
+d();
+Ans:in this scenario  "this" will point out to window object 
+undefined
+
