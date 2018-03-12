@@ -25,7 +25,7 @@ function bubbleSort(arr){
 
 
 /*
-minmum value index determined by comaporing the elements (i with j=i+1 to n )
+minimum value index determined by comaporing the elements (i with j=i+1 to n )
 */
 //selection sort
 function selectionSort(arr){
